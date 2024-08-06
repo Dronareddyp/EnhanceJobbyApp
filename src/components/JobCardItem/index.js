@@ -1,10 +1,10 @@
-import {AiFillStar} from 'react-icons/ai'
-import {IoLocationSharp} from 'react-icons/io5'
-import {BsFillBriefcaseFill} from 'react-icons/bs'
 import {Link} from 'react-router-dom'
+import {BsFillBriefcaseFill, BsStarFill} from 'react-icons/bs'
+import {MdLocationOn} from 'react-icons/md'
+import './index.css'
 
 const JobCardItem = props => {
-  const {jobDetails} = props
+  const {jobData} = props
   const {
     companyLogoUrl,
     employmentType,
@@ -14,41 +14,44 @@ const JobCardItem = props => {
     rating,
     title,
     id,
-  } = jobDetails
+  } = jobData
   return (
-    <li className="job-card">
-      <Link to={`/jobs/${id}`} className="job-card-link">
-        <div className="logo-title-container-card">
-          <img
-            src={companyLogoUrl}
-            alt="company logo"
-            className="company-logo-card"
-          />
-          <div className="title-rating-container-card">
-            <h1 className="job-title-card">{title}</h1>
-            <div className="rating-container-card">
-              <AiFillStar className="star-icon-card" />
-              <p className="rating-number-card">{rating}</p>
+    <Link to={`/jobs/${id}`} className="link-item">
+      <li className="job-item">
+        <div className="logo-title-location-container">
+          <div className="logo-title-container">
+            <img
+              src={companyLogoUrl}
+              alt="company logo"
+              className="company-logo"
+            />
+            <div className="title-rating-container">
+              <h1 className="title-heading">{title}</h1>
+              <div className="rating-container">
+                <BsStarFill className="rating-icon" />
+                <p className="rating-heading">{rating}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="location-package-container-card">
-          <div className="icon-type-container-card">
-            <IoLocationSharp className="type-icon" />
-            <p className="type-text">{location}</p>
+          <div className="location-package-container">
+            <div className="location-employee-container">
+              <div className="location-container">
+                <MdLocationOn className="location-icon" />
+                <p className="location-heading">{location}</p>
+              </div>
+              <div className="employee-type-container">
+                <BsFillBriefcaseFill className="brief-case-icon" />
+                <p className="employee-type-heading">{employmentType}</p>
+              </div>
+            </div>
+            <p className="package-heading">{packagePerAnnum}</p>
           </div>
-          <div className="icon-type-container-card">
-            <BsFillBriefcaseFill className="type-icon" />
-            <p className="type-text">{employmentType}</p>
-          </div>
-          <p className="package-text">{packagePerAnnum}</p>
         </div>
-        <hr className="separator" />
-        <h1 className="description-heading-card">Description</h1>
-        <p className="job-description-card">{jobDescription}</p>
-      </Link>
-    </li>
+        <hr className="line" />
+        <h1 className="description-heading">Description</h1>
+        <p className="description-text">{jobDescription}</p>
+      </li>
+    </Link>
   )
 }
-
 export default JobCardItem
